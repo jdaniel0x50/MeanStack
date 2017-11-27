@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS DOM AppendList</title>
+</head>
+<body>
+    <h1>Students</h1>
+    <ul id="main">
+        <!-- this is empty-->
+    </ul>
+    <br>
+    <hr>
+    <br>
+    <div id="maindiv">
+
+    </div>
+    <script>
+        function appendList(array, id) {
+            array.forEach(element => {
+                var node = document.createElement("LI");
+                var textnode = document.createTextNode(element);
+                node.appendChild(textnode);
+                document.getElementById(id).appendChild(node);
+            });
+        };
+
+        function appendAnything(array, id, HTMLelement) {
+            array.forEach(element => {
+                var node = document.createElement(HTMLelement);
+                var textnode = document.createTextNode(element);
+                node.appendChild(textnode);
+                document.getElementById(id).appendChild(node);
+            });
+        };
+
+        let students = ["Jeff", "Jenny", "Javier", "Joslyn", "Joe", "Jane", "Django"];
+        let target_id = "main";
+        appendList(students, target_id);
+        appendAnything(students, "maindiv", "H2");
+    </script>
+</body>
+</html>
