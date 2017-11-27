@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS Basics</title>
+</head>
+<body>
+    <!-- Basic 1 -->
+    <script>
+        let x = [];
+        console.log(x);
+        x.push("coding");
+        x.push("dojo");
+        x.push("rocks");
+        x.pop();
+        console.log(x);
+    </script>
+
+    <!-- Basic 2 -->
+    <script>
+        const y = [];
+        y.push(88);
+        y.push(90);
+        console.log(y);
+        // The array is constant - but we can add values to the array
+    </script>
+
+    <!-- Basic 3 -->
+    <script>
+        let z = [9, 10, 6, 5, -1, 20, 13, 2];
+        console.log("ALL VALUES");
+        for (let i = 0; i < z.length; i++) {
+            console.log(z[i]);
+        }
+
+        console.log("All values except last");
+        for (let i = 0; i < z.length - 1; i++) {
+            console.log(z[i]);
+        }
+    </script>
+
+    <!-- Basic 4 -->
+    <script>
+        let names = ['Kadie', 'Joe', 'Fritz', 'Pierre', 'Alphonso'];
+        console.log("PRINT ALL NAMES");
+        for (let i = 0; i < names.length; i++) {
+            console.log(names[i]);
+        }
+
+        console.log("Print all names with length of five")
+        for (let i = 0; i < names.length; i++) {
+            if (names[i].length == 5) {
+                console.log(names[i]);
+            }
+        }
+    </script>
+
+    <!-- Basic 5 -->
+    <script>
+        function yell(str) {
+            console.log(str.toUpperCase());
+        }
+        var str = "Hello world";
+        yell(str);
+    </script>
+</body>
+</html>
