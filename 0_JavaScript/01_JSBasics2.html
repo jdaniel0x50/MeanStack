@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS Basics2</title>
+</head>
+<body>
+    <h1>Magic Multiply</h1>
+    <script>
+        function magic_multiply(x, y) {
+            var product;
+            if (typeof y != "number") {
+                product = "The second input must be a number type. Cannot multiply by " + typeof y + " type.";
+            }
+            else {
+                switch (typeof x) {
+                    case "number":
+                        product = x * y;
+                        break;
+                    case "object":
+                        if (Array.isArray(x)) {
+                            product = [];
+                            for (let idx = 0; idx < x.length; idx++) {
+                                product.push(x[idx] * y);
+                            }
+                        }
+                        else {
+                            product = "Error: Cannot multiply objects";
+                        }
+                        break;
+                    case "string":
+                        product = "";
+                        for (let idx = 0; idx < y; idx++) {
+                            product += x;
+                        }
+                        break;
+                    default:
+                        product = "Error: Cannot multiply objects";
+                        break;
+                }
+            }
+            return product;
+        }
+
+        console.log(magic_multiply(5, 2));
+        console.log(magic_multiply(0, 0));
+        console.log(magic_multiply([1,2,3],2));
+        console.log(magic_multiply(2, [1,2,3]));
+        console.log(magic_multiply(7, "three"));
+        console.log(magic_multiply("Brendo", 4));
+    </script>
+    
+</body>
+</html>
