@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS Multiplication Table</title>
+
+    <style type="text/css">
+        /* border and styling for table data */
+        td {
+            border: 1px solid silver;
+            text-align: center;
+            width: 40px;
+            height: 40px;
+        }
+    
+        /* background and bolding for the first element of our rows and data */
+        td:first-child,
+        tr:first-child {
+            background-color: silver;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="target"></div>
+
+    <script type="text/javascript">
+        // define draw table
+        function draw_table() {
+            // create our html string, open up the table tag
+            let html_string = "<table>";
+            // outer loop
+            for (let i = 0; i < 13; i++) {
+                // create a row for each iteration of the outer loop
+                html_string += "<tr>";
+
+                // inner loop
+                for (let j = 0; j < 13; j++) {
+                    let nums = 0;
+                    if (i === 0) {
+                        // initiate the first row if i = 0
+                        nums = j;
+                    }
+                    else {
+                        if (j === 0) {
+                            // initiate the row heading as the i multiplier
+                            nums = i;
+                        }
+                        else {
+                            // calculate our number
+                            nums = i * j;
+                        }
+                    }
+                    // attach our table data tags around the number
+                    let data = "<td>" + nums + "</td>";
+                    // add it to the html
+                    html_string += data;
+                }
+                // after the inner loop, we cap our table rows
+                html_string += "</tr>";
+            }
+            // after the outer loop, we cap our entire table
+            html_string += "</table>";
+            document.getElementById("target").innerHTML = html_string;
+        }
+        draw_table();
+    </script>
+
+</body>
+</html>
