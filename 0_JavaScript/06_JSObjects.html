@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS Objects</title>
+</head>
+<body>
+    <script>
+        let students = [
+                { name: 'Remy', cohort: 'Jan' },
+                { name: 'Genevieve', cohort: 'March' },
+                { name: 'Chuck', cohort: 'Jan' },
+                { name: 'Osmund', cohort: 'June' },
+                { name: 'Nikki', cohort: 'June' },
+                { name: 'Boris', cohort: 'June' }
+            ];
+        
+        var str = "";
+        for(let student in students) {
+            str += "Name: " + students[student].name + ", ";
+            str += "Cohort: " + students[student].cohort;
+            str += "\n";
+        }
+
+        console.log(str);
+
+        let users = {
+                employees: [
+                    { 'first_name': 'Miguel', 'last_name': 'Jones' },
+                    { 'first_name': 'Ernie', 'last_name': 'Bertson' },
+                    { 'first_name': 'Nora', 'last_name': 'Lu' },
+                    { 'first_name': 'Sally', 'last_name': 'Barkyoumb' }
+                ],
+                managers: [
+                    { 'first_name': 'Lillian', 'last_name': 'Chambers' },
+                    { 'first_name': 'Gordon', 'last_name': 'Poe' }
+                ]
+            };
+        
+        console.log("EMPLOYEES");
+        str = "";
+        idx = 1;
+        for (let emp in users.employees) {
+            str += idx.toString() + " - " + users.employees[emp].last_name.toUpperCase() + ", ";
+            str += users.employees[emp].first_name.toUpperCase() + " - ";
+            str += (users.employees[emp].last_name.length + users.employees[emp].first_name.length);
+            str += "\n";
+            idx+=1;
+        }
+        console.log(str);
+
+        console.log("MANAGERS");
+        str = "";
+        idx = 1;
+        for (let mgr in users.managers) {
+            str += idx.toString() + " - " + users.managers[mgr].last_name.toUpperCase() + ", ";
+            str += users.managers[mgr].first_name.toUpperCase() + " - ";
+            str += (users.managers[mgr].last_name.length + users.managers[mgr].first_name.length);
+            str += "\n";
+            idx += 1;
+        }
+        console.log(str);
+    </script>
+</body>
+</html>
