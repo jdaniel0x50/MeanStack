@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS Math</title>
+</head>
+<body>
+    <h1>JS Math function</h1>
+    <script>
+        function zero_negativity(arr) {
+            let min = Math.min.apply(null, arr);
+            if (min < 0) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+
+        function is_even(num) {
+            if (num % 2 === 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        function how_many_even(arr) {
+            var count = 0;
+            for (let idx = 0; idx < arr.length; idx++) {
+                if (is_even(arr[idx]) == true) {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        function create_dummy_array(num) {
+            var arr = [];
+            if (num < 1) { return arr };
+            for (let idx = 0; idx < num; idx++) {
+                let new_num = Math.floor(Math.random()*10);
+                arr.push(new_num);
+            }
+            return arr;
+        }
+
+        function random_arr_choice(arr) {
+            if (arr.length < 1) { return arr };
+            rand_idx = Math.floor(Math.random()*arr.length);
+            return arr[rand_idx];
+        }
+
+        var arr1 = [1,2,3,98,5,6];
+        var arr2 = [1,2,3,-4,9];
+        console.log(zero_negativity(arr1));
+        console.log(zero_negativity(arr2));
+        console.log(random_arr_choice(arr1));
+        console.log(random_arr_choice(arr1));
+
+        console.log(how_many_even(arr1));
+        console.log(how_many_even(arr2));
+
+        console.log(create_dummy_array(8));
+
+    </script>
+</body>
+</html>
