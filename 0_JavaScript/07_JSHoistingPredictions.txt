@@ -1,0 +1,80 @@
+1
+console.log(hello);
+var hello = 'world';
+// output => undefined
+
+
+2
+var needle = 'haystack';
+test();
+function test(){
+	var needle = 'magnet';
+	console.log(needle);
+}
+// output => "magnet"
+
+
+3
+var brendan = 'super cool';
+function print(){
+	brendan = 'only okay';
+	console.log(brendan);
+}
+console.log(brendan);
+// output => "super cool" -- will never go inside function
+
+
+4
+var food = 'chicken';
+console.log(food);
+eat();
+function eat(){
+	food = 'half-chicken';
+	console.log(food);
+	var food = ‘gone’;
+}
+// output => "chicken ... half-chicken"
+// correction => syntax error - the compiler will not like the ’ characters
+
+
+5
+mean();
+console.log(food);
+var mean = function() {
+	food = "chicken";
+	console.log(food);
+	var food = "fish";
+	console.log(food);
+}
+console.log(food);
+// output => undefined ... var mean will hoist to the top but the function will not be defined
+
+
+6
+console.log(genre);
+var genre = "disco";
+rewind();
+function rewind() {
+	genre = "rock";
+	console.log(genre);
+	var genre = "r&b";
+	console.log(genre);
+}
+console.log(genre);
+// output => undefined, "rock", "r&b", "disco"
+
+
+7
+dojo = "san jose";
+console.log(dojo);
+learn();
+function learn() {
+	dojo = "seattle";
+	console.log(dojo);
+	var dojo = "burbank";
+	console.log(dojo);
+}
+console.log(dojo);
+// output => undefined ... dojo is never defined in parent ... inside learn it will output "seattle, burbank"
+// correction => the compiler defined dojo anyways
+// ouput actual => san jose, seattle, burbank, san jose
