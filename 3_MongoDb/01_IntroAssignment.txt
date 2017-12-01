@@ -1,0 +1,36 @@
+use my_first_db
+db.createCollection("students")
+db.students.insert({name: "Janet", home_state: "WA", lucky_number: 5, birthday: {month: 01, day: 05, year: 1985}})
+db.students.insert({name: "Roger", home_state: "FL", lucky_number: 8, birthday: {month: 08, day: 08, year: 1988}})
+db.students.insert({name: "Hillary", home_state: "NY", lucky_number: 0, birthday: {month: 09, day: 09, year: 1950}})
+db.students.insert({name: "Peter", home_state: "CA", lucky_number: 6, birthday: {month: 02, day: 06, year: 1972}})
+db.students.insert({name: "Matilda", home_state: "MI", lucky_number: 3, birthday: {month: 03, day: 23, year: 1983}})
+
+db.students.find().pretty()
+db.students.find({$or: [{home_state: "CA"}, {home_state: "WA"}]}).pretty()
+
+db.students.find({lucky_number: {$gt: 3}}).pretty()
+db.students.find({lucky_number: {$lte: 10}}).pretty()
+db.students.find({$or: [{lucky_number: {$gte: 1}}, {lucky_number: {$lte: 9}}]}).pretty()
+
+db.students.update({}, {$set: {interests: ["coding", "brunch", "MongoDb"]}}, {multi: true})
+db.students.update({name: "Janet"}, {$addToSet: {interests: "pottery"}})
+db.students.update({name: "Roger"}, {$addToSet: {interests: "basket weaving"}})
+db.students.update({name: "Hillary"}, {$addToSet: {interests: "soccer"}})
+db.students.update({name: "Peter"}, {$addToSet: {interests: "guitar"}})
+db.students.update({name: "Matilda"}, {$addToSet: {interests: "guitar, horses, painting"}})
+db.students.update({name: "Matilda"}, {$addToSet: {interests: "taxes"}})
+db.students.update({name: "Matilda"}, {$pull: {interests: "taxes"}})
+
+
+db.students.remove({home_state: "CA"})
+db.students.remove({name: "Janet"})
+db.students.remove({lucky_number: {$gt: 5}}, true)
+
+db.students.update({}, {$set: {number_of_belts: 0}}, {multi: true})
+db.students.update({home_state: "NY"}, {$inc: {number_of_belts: 1}})
+db.students.update({}, {$rename: {number_of_belts: "belts_earned"}}, {multi: true})
+
+db.students.update({}, {$unset: {lucky_number: ""}}, {multi: true})
+db.students.update({}, {$set: {updated_on: new Date()}}, {multi: true})
+
