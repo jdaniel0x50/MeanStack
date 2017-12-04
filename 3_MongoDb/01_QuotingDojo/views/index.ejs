@@ -52,19 +52,28 @@
                     <label for="name" class="col-sm-3 col-form-label">Your Name:</label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" name="name" placeholder="Name">
+                        <% if (typeof(errors) != 'undefined') { %>
+                            <% for (var err in errors) { %>
+                                <% if (errors[err].path == "name") { %>
+                                    <h6 class="text-danger"><%= errors[err].message %></h6>
+                                <% } %>
+                            <% } %>
+                        <% } %>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="quote" class="col-sm-3 col-form-label">Your Quote:</label>
                     <div class="col-sm-9">
                         <textarea rows="4" class="form-control" name="quote" placeholder="What do you have to say, oh wise one?"></textarea>
+                        <% if (typeof(errors) != 'undefined') { %>
+                            <% for (var err in errors) { %>
+                                <% if (errors[err].path == "quote") { %>
+                                    <h6 class="text-danger"><%= errors[err].message %></h6>
+                                <% } %>
+                            <% } %>
+                        <% } %>
                     </div>
                 </div>
-                <% if (typeof(errors) != 'undefined') { %>
-                    <% for (var err in errors) { %>
-                        <h3><%= errors[err].message %></h3>
-                    <% } %>
-                <% } %>
                 <div class="form-group row">
                     <div class="col-sm-10">
                         <input type="submit" class="btn btn-primary">
