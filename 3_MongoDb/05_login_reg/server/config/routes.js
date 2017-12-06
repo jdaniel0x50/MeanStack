@@ -15,6 +15,6 @@ module.exports = function(app) {
         loginreg.logout(req, res);
     });
     app.get('/success', function (req, res) {
-        res.render('success');
+        loginreg.success(req, res);
     });
 }

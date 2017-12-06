@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
+var bcrypt = require('bcrypt');
+
 mongoose.Promise = global.Promise;
-var bcrypt = require('bcrypt-nodejs-as-promised');
 var Schema = mongoose.Schema;
 var UserSchema = new Schema({
     email: {
@@ -38,9 +39,6 @@ var UserSchema = new Schema({
     },
     passwordHash: {
         type: String
-    },
-    salt: {
-        type: String
     }
 }, {timestamps: true});
 
@@ -59,64 +57,29 @@ UserSchema.virtual('password_confirm')
         this._password_confirm = value;
     })
 
-UserSchema.methods.createPwHash = function(password) {
-    bcrypt.genSalt(10, function(err, salt) {
-        if (err) {
-            return console.error(err);
-        }
-        console.log("SALT WAS SET ---");
-        this.salt = salt;
-        var saltedPw = password + salt;
-        console.log(saltedPw);
-        bcrypt.hash(password, 10)
-            .then( hash => {
-                this.passwordHash = hash;
-                console.log(hash);
-                console.log("HASHED PW");
-                console.log(this.passwordHash);
-        });
-            // .then( function(hash) {
-            //     console.log("INSIDE HASH");
-            //     console.log(hash);
-            //     this.passwordHash = hash;
-            // })
-            // .catch( function(err) {
-            //     console.error(err);
-            // })
-        // bcrypt.hash(saltedPw, 10, function(err, hash) {
-        //     if (err) {
-        //         return console.error(err);
-        //     }
-        //     console.log("INSIDE HASH");
-        //     console.log(hash);
-        //     this.passwordHash = hash;
-        // })
-    })
-}
-
-UserSchema.path('passwordHash').validate(function(value) {
-    if (this._password || this._password_confirm) {
-        if (!this._password) {
-            this.invalidate('password', "Password is required.");
-        }
-        if (!val.check(this._password).min(8)) {
-            this.invalidate('password', "Must be at least 8 characters.");
-        }
-        if (this._password !== this._password_confirm) {
-            console.log("LOGGING PASSWORD MISMATCH")
-            this.invalidate('password', "The password and confirmation do not match.");
-        }
-    }
-}, null);
+// MOVED THE PASSWORD VALIDATION TO THE SERVER CONTROLLER
+// UserSchema.path('passwordHash').validate(function(value) {
+//     if (this._password || this._password_confirm) {
+//         if (!this._password) {
+//             this.invalidate('password', "Password is required.");
+//         }
+//         if (!val.check(this._password).min(8)) {
+//             this.invalidate('password', "Must be at least 8 characters.");
+//         }
+//         if (this._password !== this._password_confirm) {
+//             console.log("LOGGING PASSWORD MISMATCH")
+//             this.invalidate('password', "The password and confirmation do not match.");
+//         }
+//     }
+// }, null);
 
 UserSchema.pre('save', function(done) {
-    console.log("INSIDE pre method");
-    console.log("GETTING THE VIRTUAL PASSWORD");
-    console.log(this._password);
-    this.createPwHash(this._password);
-    console.log("AFTER THE PASSWORD HASH METHOD");
-    console.log(this.passwordHash);
-    done();
+    const saltRounds = 10;
+    bcrypt.hash(this._password, saltRounds)
+        .then( hash => {
+            this.passwordHash = hash;
+            done();
+        });
 });
 mongoose.model('User', UserSchema);
 var User = mongoose.model('User');

@@ -1,11 +1,14 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
+var express = require('express'),
+    session = require('express-session'),
+    app = express(),
+    bodyParser = require('body-parser'),
+    mongoose = require('mongoose'),
+    path = require('path');
+
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.urlencoded({ extended: true }));
-var path = require('path');
+app.use(session({ secret: 'my_secret_key' }))
 app.use(express.static(path.join(__dirname, './client/static')));
 app.set('views', path.join(__dirname, './client/views'));
 app.set('view engine', 'ejs');

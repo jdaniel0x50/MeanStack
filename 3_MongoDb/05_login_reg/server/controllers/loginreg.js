@@ -1,12 +1,8 @@
-var mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
-var express = require('express');
-var app = express();
-var bcrypt = require('bcrypt-nodejs-as-promised');
-var session = require('express-session');
-var User = mongoose.model('User');
+var mongoose = require('mongoose'),
+    bcrypt = require('bcrypt'),
+    User = mongoose.model('User');
 
-app.use(session({ secret: '9ef430baf8d4abc13341'}))
+mongoose.Promise = global.Promise;
 
 function createError(_path, _message) {
     var errors = [];
@@ -20,7 +16,7 @@ function createError(_path, _message) {
 
 module.exports = {
     login: function(req, res) {
-        var user = User.findOne({email: req.body.email}, function(err, user) {
+        var user = User.findOne({ email: req.body.loginEmail}, function(err, user) {
             if (err) {
                 console.log(err);
                 var errors = createError(
@@ -31,22 +27,21 @@ module.exports = {
             else {
                 if (user != null) {
                     // the user was found in the database
-                    bcrypt.compare(req.body.password, user.passwordHash)
-                        .then(function() {
-                            req.session.loggedUserId = user._id;
-                            res.redirect('/success');
-                        })
-                        .catch(bcrypt.MISMATCH_ERROR, function() {
-                            console.log(bcrypt.MISMATCH_ERROR);
-                            var errors = createError(
-                                "loginEmail", 
-                                "The email and password combination did not match our records.");
-                            res.render('index', { errors: errors });
-                        })
-                        .catch(function(err) {
-                            console.log(err);
-                            res.render('index', { errors: err });
-                        })
+                    bcrypt.compare(req.body.loginPassword, user.passwordHash)
+                        .then( result => {
+                            if (result) {
+                                // password matched
+                                req.session.loggedUserId = user._id;
+                                res.redirect('/success');
+                            }
+                            else {
+                                // password did not match
+                                var errors = createError(
+                                    "loginEmail",
+                                    "The email and password combination did not match our records.");
+                                res.render('index', { errors: errors });
+                            }
+                        });
                 }
                 else {
                     // the user was not found in the database
@@ -78,16 +73,21 @@ module.exports = {
                     // password and confirmation must be the same
                     if (user.password.length >= 8) {
                         // password length must be at least 8 characters
-                        user.save(function (err) {
+                        user.save(function (err, result) {
                             if (err) {
                                 console.log("There were errors in the submission");
                                 console.log(err);
-                                res.render('index', { errors: user.errors });
+                                if (err.name == "MongoError") {
+                                    var errors = createError(
+                                        "email",
+                                        "This email address is already in use. Please use another address.");
+                                }
+                                res.render('index', { errors: errors });
                             }
                             else {
                                 // registration was successful - login and proceed
                                 console.log("successfully added a document!");
-                                req.session.loggedUserId = user._id;
+                                req.session.loggedUserId = result._id;
                                 res.redirect('/success');
                             }
                         });
@@ -119,15 +119,29 @@ module.exports = {
     },
 
     logout: function(req, res) {
-        User.findById(req.session.loggedUserId, function (err, user) {
-            if (err) {
+        if (req.session && req.session.loggedUserId != null) {
+            User.findById(req.session.loggedUserId, function (err, user) {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    req.session.destroy();
+                    res.redirect('/');
+                }
+            })
+        }
+    },
 
-            }
-            else {
-                console.log(user);
-                req.session.destroy();
-                res.redirect('/');
-            }
-        })
+    success: function(req, res) {
+        if (req.session && req.session.loggedUserId != null) {
+            User.findById(req.session.loggedUserId, function (err, user) {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    res.render('success', { user: user });
+                }
+            })
+        }
     },
 }
