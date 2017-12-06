@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/site.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+    <!-- jQuery UI JavaScript -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="/js/site.js"></script>
+
+    <title>LoginReg</title>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">Login Portal</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav my-2 my-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Made by Joshua Daniel</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="mt-4 p-3">
+            <div class="row col-md-12">
+                <div id="regContainer" class="container">
+                    <div class="col-md-6 col-md-offset-3 mx-auto">
+                        <div class="panel panel-login p-3">
+                            <div class="panel-heading">
+                                <div class="row mx-auto">
+                                    <div class="col-xs-6 mx-auto">
+                                        <a href="#" class="active" id="register-form-link">Register</a>
+                                    </div>
+                                    <div class="col-xs-6 mx-auto">
+                                        <a href="#" id="login-form-link">Login</a>
+                                    </div>
+                                </div>
+                                <hr class="mt-2 mb-3">
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <form id="register-form" action="/register" method="post" role="form" style="display: block;">
+                                            <!-- registration form -->
+                                            <div class="form-group">
+                                                <label for="email">Email</label>
+                                                <input name="email" type="email" tabindex="1" class="form-control" placeholder="Email" value="">
+                                            </div>
+                                            <div class="row col-md-12">
+                                                <% if (typeof(errors) != 'undefined') { %>
+                                                    <% for (var err in errors) { %>
+                                                        <% if (errors[err].path == "email") { %>
+                                                            <h6 class="text-danger"><%= errors[err].message %></h6>
+                                                        <% } %>
+                                                    <% } %>
+                                                <% } %>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="first_name">First Name</label>
+                                                <input name="first_name" type="text" tabindex="2" class="form-control" placeholder="First Name" value="">
+                                            </div>
+                                            <div class="row col-md-12">
+                                                <% if (typeof(errors) != 'undefined') { %>
+                                                    <% for (var err in errors) { %>
+                                                        <% if (errors[err].path == "first_name") { %>
+                                                            <h6 class="text-danger"><%= errors[err].message %></h6>
+                                                        <% } %>
+                                                    <% } %>
+                                                <% } %>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="last_name">Last Name</label>
+                                                <input name="last_name" type="text" tabindex="3" class="form-control" placeholder="Last Name" value="">
+                                            </div>
+                                            <div class="row col-md-12">
+                                                <% if (typeof(errors) != 'undefined') { %>
+                                                    <% for (var err in errors) { %>
+                                                        <% if (errors[err].path == "last_name") { %>
+                                                            <h6 class="text-danger"><%= errors[err].message %></h6>
+                                                        <% } %>
+                                                    <% } %>
+                                                <% } %>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="birthdate">Birthdate</label>
+                                                <input name="birthdate" type="date" tabindex="5" class="form-control" placeholder="mm/dd/yyyy" value="">
+                                            </div>
+                                            <div class="row col-md-12">
+                                                <% if (typeof(errors) != 'undefined') { %>
+                                                    <% for (var err in errors) { %>
+                                                        <% if (errors[err].path == "birthdate") { %>
+                                                            <h6 class="text-danger"><%= errors[err].message %></h6>
+                                                        <% } %>
+                                                    <% } %>
+                                                <% } %>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="password">Password</label>
+                                                <input name="password" type="password" tabindex="6" class="form-control" placeholder="Password" value="">
+                                            </div>
+                                            <div class="row col-md-12">
+                                                <% if (typeof(errors) != 'undefined') { %>
+                                                    <% for (var err in errors) { %>
+                                                        <% if (errors[err].path == "password") { %>
+                                                            <h6 class="text-danger"><%= errors[err].message %></h6>
+                                                        <% } %>
+                                                    <% } %>
+                                                <% } %>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="password_confirm">Confirm Password</label>
+                                                <input name="password_confirm" type="password" tabindex="7" class="form-control" placeholder="Confirm Password" value="">
+                                            </div>
+                                            <div class="row col-md-12">
+                                                <% if (typeof(errors) != 'undefined') { %>
+                                                    <% for (var err in errors) { %>
+                                                        <% if (errors[err].path == "password_confirm") { %>
+                                                            <h6 class="text-danger"><%= errors[err].message %></h6>
+                                                        <% } %>
+                                                    <% } %>
+                                                <% } %>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-6 mx-auto">
+                                                        <input type="submit" name="register-submit" id="register-submit" tabindex="8" class="form-control btn btn-login" value="Register Now">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <form id="login-form" action="/login" method="post" role="form" style="display: none;">
+                                            <div class="form-group">
+                                                <label for="loginEmail">Email</label>
+                                                <input name="loginEmail" type="email" tabindex="1" class="form-control" placeholder="Email" value="">
+                                                <div class="row col-md-12">
+                                                    <% if (typeof(errors) != 'undefined') { %>
+                                                        <% for (var err in errors) { %>
+                                                            <% if (errors[err].path == "loginEmail") { %>
+                                                                <h6 class="text-danger"><%= errors[err].message %></h6>
+                                                            <% } %>
+                                                        <% } %>
+                                                    <% } %>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="loginPassword">Password</label>
+                                                <input name="loginPassword" type="password" tabindex="2" class="form-control" placeholder="Password">
+                                                <div class="row col-md-12">
+                                                    <% if (typeof(errors) != 'undefined') { %>
+                                                        <% for (var err in errors) { %>
+                                                            <% if (errors[err].path == "loginPassword") { %>
+                                                                <h6 class="text-danger"><%= errors[err].message %></h6>
+                                                            <% } %>
+                                                        <% } %>
+                                                    <% } %>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-6 mx-auto">
+                                                        <input type="submit" name="login-submit" id="login-submit" tabindex="3" class="form-control btn btn-login" value="Login">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- validations for the login form -->
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
