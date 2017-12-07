@@ -1,0 +1,21 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1 class="display-4">{{ title }}</h1>
+</div>
+<table class="table table-striped my-5">
+  <thead>
+    <tr>
+      <th scope="column">Email</th>
+      <th scope="column">Importance</th>
+      <th scope="column">Subject</th>
+      <th scope="column">Content</th>
+    </tr>
+  </thead>
+  <tr *ngFor="let msg of myEmails">
+    <td>{{ msg.email }}</td>
+    <td>{{ msg.importance }}</td>
+    <td>{{ msg.subject }}</td>
+    <td>{{ msg.content }}</td>
+  </tr>
+</table>
+
