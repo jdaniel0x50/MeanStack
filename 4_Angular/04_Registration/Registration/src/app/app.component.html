@@ -1,0 +1,157 @@
+<div class="row col-md-12 my-5 p-0 m-0">
+  <h1 class="col-md-12 display-4">{{ title }}</h1>
+</div>
+<div class="row col-md-10 my-5 mx-auto successSubmit" *ngIf="formSubmitted">
+  <p>Thank you for registering, {{users[users.length - 1].first_name}}. We just sent you a confirmation email at {{users[users.length - 1].email}}, and will send all mail to {{users[users.length - 1].address}}, {{users[users.length - 1].city}}, {{users[users.length - 1].state}}.</p>
+</div>
+<div class="row col-md-11 mx-auto my-5">
+  <form (submit)="onSubmit(); registrationForm.reset()" class="form col-md-12" name="registrationForm" #registrationForm="ngForm">
+    <div class="row form-group">
+      <label for="first_name" class="col-md-2 col-form-label">*First Name</label>
+      <input 
+        name="first_name" 
+        type="text" 
+        tabindex="1" 
+        class="col-md-5 form-control" 
+        placeholder="First Name" 
+        minLength="2"
+        maxLength="50"
+        pattern="[^'\x22]+"
+        required
+        [(ngModel)]="user.first_name"
+        #first_name="ngModel">
+      <p class="text-danger ml-2 col-md-4" *ngIf="first_name.errors && first_name.touched">First name is required, must have 2-50 characters, and cannot have single quotes.</p>
+    </div>
+    <div class="row form-group">
+      <label for="last_name" class="col-md-2 col-form-label">*Last Name</label>
+      <input 
+        name="last_name" 
+        type="text" 
+        tabindex="2" 
+        class="col-md-5 form-control" 
+        placeholder="Last Name" 
+        minLength="2"
+        maxLength="50"
+        pattern="[^'\x22]+"
+        required
+        [(ngModel)]="user.last_name"
+        #last_name="ngModel">
+      <p class="text-danger ml-2 col-md-4" *ngIf="last_name.errors && last_name.touched">Last name is required, must have 2-50 characters, and cannot have single quotes.</p>
+    </div>
+    <div class="row form-group">
+      <label for="email" class="col-md-2 col-form-label">*Email</label>
+      <input 
+        name="email" 
+        type="email" 
+        tabindex="3" 
+        class="col-md-5 form-control" 
+        placeholder="default_email@example.com" 
+        minLength="5"
+        maxLength="50"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+        required
+        [(ngModel)]="user.email"
+        #email="ngModel">
+      <p class="text-danger ml-2 col-md-4" *ngIf="email.errors && email.touched">Email is required, must have 5-50 characters, and must be in the form e-mail_address@domain.ext.</p>
+    </div>
+    <div class="row form-group">
+      <label for="birthdate" class="col-md-2 col-form-label">*Birthdate</label>
+      <input 
+        name="birthdate" 
+        type="date" 
+        tabindex="4" 
+        class="col-md-5 form-control" 
+        min="1900-01-01"
+        max="{{currDateString}}"
+        required
+        [(ngModel)]="user.birthdate"
+        #birthdate="ngModel">
+      <p class="text-danger ml-2 col-md-4" *ngIf="birthdate.errors && birthdate.touched">Birthdate is required and must be before today.</p>
+    </div>
+    <div class="row form-group">
+      <label for="address" class="col-md-2 col-form-label">*Street Address</label>
+      <input 
+        name="address" 
+        type="text" 
+        tabindex="5" 
+        class="col-md-5 form-control" 
+        placeholder="Street Address" 
+        minLength="3"
+        maxLength="50"
+        pattern="[^'\x22]+"
+        required
+        [(ngModel)]="user.address"
+        #address="ngModel">
+      <p class="text-danger ml-2 col-md-4" *ngIf="address.errors && address.touched">Street address is required, must have 3-50 characters, and cannot have single quotes.</p>
+    </div>
+    <div class="row form-group">
+      <label for="address_unit" class="col-md-2 col-form-label">Unit or Apartment</label>
+      <input 
+        name="address_unit" 
+        type="text" 
+        tabindex="6" 
+        class="col-md-5 form-control" 
+        placeholder="Unit or Apartment" 
+        maxLength="50"
+        pattern="[^'\x22]+"
+        [(ngModel)]="user.address_unit"
+        #address_unit="ngModel">
+      <p class="text-danger ml-2 col-md-4" *ngIf="address_unit.errors && address_unit.touched">The unit or apartment cannot have single quotes, and must be less than 50 characters.</p>
+    </div>
+    <div class="row form-group">
+      <label for="city" class="col-md-2 col-form-label">*City</label>
+      <input 
+        name="city" 
+        type="text" 
+        tabindex="7" 
+        class="col-md-5 form-control" 
+        placeholder="City" 
+        minLength="2"
+        maxLength="50"
+        pattern="[^'\x22]+"
+        required
+        [(ngModel)]="user.city"
+        #city="ngModel">
+      <p class="text-danger ml-2 col-md-4" *ngIf="city.errors && city.touched">City is required, must have 2-50 characters, and cannot have single quotes.</p>
+    </div>
+    <div class="row form-group">
+      <label for="state" class="col-md-2 col-form-label">*State</label>
+      <input 
+        name="state" 
+        type="text" 
+        tabindex="8" 
+        class="col-md-5 form-control" 
+        placeholder="State" 
+        pattern="[A-Z]{2}"
+        required
+        [(ngModel)]="user.state"
+        #state="ngModel">
+      <p class="text-danger ml-2 col-md-4" *ngIf="state.errors && state.touched">State is required and must be two upper case letters.</p>
+    </div>
+    <div class="row form-group">
+      <label class="col-md-2 col-form-label">*How are you feeling?</label>
+      <label *ngFor="let choice of feelingsChoices" class="row col-md-2">
+        <input 
+          name="feeling" 
+          type="radio" 
+          tabindex="9" 
+          class="col-md-5 form-control" 
+          required
+          [(ngModel)]="user.feeling"
+          #feeling="ngModel"
+          [value]="choice.value">
+          {{choice.text}}
+      </label>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-6 mx-auto" >
+          <input type="submit" tabindex="10" class="form-control" value="Register" [disabled]="registrationForm.invalid">
+        </div>
+      </div>
+    </div>
+
+
+
+  </form>
+</div>

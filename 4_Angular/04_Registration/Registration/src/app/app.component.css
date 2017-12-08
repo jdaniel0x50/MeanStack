@@ -1,0 +1,9 @@
+.form {
+    border: 1px slategray solid;
+    padding: 35px;
+}
+.successSubmit {
+    color: green;
+    border: 2px darkolivegreen solid;
+    padding: 20px;
+}
