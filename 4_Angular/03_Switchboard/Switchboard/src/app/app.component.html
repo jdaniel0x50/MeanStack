@@ -1,0 +1,13 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="row col-md-12 my-5 p-0 m-0">
+  <h1 class="col-md-12 display-4 text-center">{{ title }}</h1>
+</div>
+<div class="row col-md-11 mx-auto my-5">
+  <div class="row col-md-12 mx-auto switchboard">
+    <div *ngFor='let x of mySwitchIdxArray; let idx = index' class="col-md-1 switchContainer">
+      <div (click)="onSwitchClick($event, x)" class="switch" [ngClass]="{'switchOn': mySwitchArray[x], 'switchOff': !mySwitchArray[x]}">
+        <h6 class="col-md-10 mx-auto">{{ mySwitchValueArray[x] }}</h6>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+.switchboard {
+    background-color: peru;
+    border: 1px solid saddlebrown;
+    box-shadow: 5px 5px lightslategray;
+    padding: 15px;
+}
+.switchContainer {
+    padding: 10px;
+}
+.switch {
+    border: 2px solid black;
+    font-weight: bold;
+    color: white;
+    height: 45px;
+    line-height: 40px;
+}
+.switch h6 {
+    vertical-align: middle;
+    display: inline-block;
+}
+.switchOn {
+    background-color: green;
+}
+.switchOff {
+    background-color: red;
+}
