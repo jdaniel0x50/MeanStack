@@ -1,0 +1,36 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="row col-md-12 my-3 p-0 m-0">
+  <h1 class="col-md-12 display-4 text-center">{{ title }}</h1>
+</div>
+<div class="row col-md-12 my-5 p-0 m-0">
+  <div class="row col-md-10 mx-auto p-0 m-0">
+    <div class="col-md-2">
+      <button (click)="onButtonClick($event)" name="PST" id="PST" class="col-md-10 mx-auto" [ngClass]="{'selectedBtn': switchPST}">PST</button>
+    </div>
+    <div class="col-md-2">
+      <button (click)="onButtonClick($event)" name="MST" id="MST" class="col-md-10 mx-auto" [ngClass]="{'selectedBtn': switchMST}">MST</button>
+    </div>
+    <div class="col-md-2">
+      <button (click)="onButtonClick($event)" name="CST" id="CST" class="col-md-10 mx-auto" [ngClass]="{'selectedBtn': switchCST}">CST</button>
+    </div>
+    <div class="col-md-2">
+      <button (click)="onButtonClick($event)" name="EST" id="EST" class="col-md-10 mx-auto" [ngClass]="{'selectedBtn': switchEST}">EST</button>
+    </div>
+    <div class="col-md-2">
+      <button (click)="onButtonClick($event)" name="GMT" id="GMT" class="col-md-10 mx-auto" [ngClass]="{'selectedBtn': switchGMT}">GMT</button>
+    </div>
+    <div class="col-md-2">
+      <button (click)="onButtonClick($event)" name="Clear" id="Clear" class="col-md-10 mx-auto" [ngClass]="{'selectedBtn': switchClear}">Clear</button>
+    </div>
+  </div>
+</div>
+<div class="row col-md-12 my-5 p-0 m-0">
+  <div class="row col-md-12 mx-auto">
+    <div class="row col-md-12">
+      <h4 id="displayTime" class="col-md-12 text-center">{{ utcTime }}</h4>
+    </div>
+    <div class="row col-md-10 my-5 mx-auto">
+      <p>You are currently located in the {{ localTZname }} (GMT - {{ localTZoffset / 60 }} hours)</p>
+    </div>
+  </div>
+</div>
