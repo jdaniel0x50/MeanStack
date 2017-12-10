@@ -1,0 +1,21 @@
+.quoteContent {
+    padding: 15px;
+    border: 1px darkslategray solid;
+    margin: 15px auto;
+}
+.btn {
+    font-weight: bold;
+    color: white;
+}
+.btn-green {
+    background-color: darkolivegreen;
+    box-shadow: 2px 2px darkslategray;
+}
+.btn-red {
+    background-color: firebrick;
+    box-shadow: 2px 2px maroon;
+}
+.btn-black {
+    background-color: dimgray;
+    box-shadow: 2px 2px darkslategray;
+}

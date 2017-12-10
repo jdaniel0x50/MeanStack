@@ -1,0 +1,49 @@
+<div class="row col-md-12 p-0 m-0">
+  <h1 class="col-md-12 display-4">Add a Quote</h1>
+</div>
+<div class="row col-md-11 mx-auto">
+  <form (submit)="onSubmit(); addQuote.reset()" class="form col-md-12" name="addQuote" #addQuote="ngForm">
+    <div class="row form-group">
+      <label for="quoteText" class="col-md-2 col-form-label">*Quote</label>
+      <textarea name="quoteText" type="text" tabindex="1" class="col-md-5 form-control" 
+        placeholder="What wise words do you have to share with us? ..." 
+        minlength="2" 
+        maxlength="255"
+        pattern="[^'\x22]+"
+        rows=3 
+        required 
+        [(ngModel)]="quote.quoteText" 
+        #quoteText="ngModel"></textarea>
+      <div class="text-danger ml-2 col-md-4">
+        <p *ngIf="quoteText.errors?.required && quoteText.touched">A quote is required.</p>
+        <p *ngIf="quoteText.errors?.minlength && quoteText.touched">A quote must have at least 2 characters.</p>
+        <p *ngIf="quoteText.errors?.maxlength && quoteText.touched">A quote may have no more than 255 characters.</p>
+        <p *ngIf="quoteText.errors?.pattern && quoteText.touched">A quote cannot have single quotes.</p>
+      </div>
+    </div>
+    <div class="row form-group">
+      <label for="author" class="col-md-2 col-form-label">*Author</label>
+      <input name="author" type="text" tabindex="2" class="col-md-5 form-control" 
+        placeholder="Author" 
+        minlength="2" 
+        maxlength="50"
+        pattern="[^'\x22]+" 
+        required [(ngModel)]="quote.author" 
+        #author="ngModel">
+      <div class="text-danger ml-2 col-md-4">
+        <p *ngIf="author.errors?.required && author.touched">Author is required.</p>
+        <p *ngIf="author.errors?.minlength && author.touched">An author name must have at least 2 characters.</p>
+        <p *ngIf="author.errors?.maxlength && author.touched">An author name may have no more than 255 characters.</p>
+        <p *ngIf="author.errors?.pattern && author.touched">An author name cannot have single quotes.</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-2 offset-md-5 p-0">
+          <input type="submit" tabindex="3" class="form-control" value="Submit" [disabled]="addQuote.invalid">
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<app-quote-list class="row col-md-11 my-5 mx-0 p-0" [quotes]="quotes" (isQuotesList)="onChangeQuotesList($event)"  *ngIf="isQuotesList"></app-quote-list>

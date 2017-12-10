@@ -1,0 +1,23 @@
+<div class="row col-md-12 p-0 m-0">
+  <h1 class="col-md-12 display-4">Quotes List</h1>
+</div>
+<div class="row col-md-11 ml-3 quoteContent" *ngFor="let quote of quotes; let idx = index">
+  <div class="blockquote col-md-7">
+    <p class="mb-0">{{quote.quoteText}}</p>
+    <footer class="blockquote-footer text-right">{{quote.author}}</footer>
+  </div>
+  <div class="col-md-2">
+    <h2 class="col-md-12 text-center"><span *ngIf="quote.votes >= 0">+</span>{{quote.votes}}</h2>
+  </div>
+  <div class="col-md-3">
+    <div class="row">
+      <button (click)="onClickVoteUp(idx)" class="col-md-10 mx-auto btn btn-green">Vote Up</button>
+    </div>
+    <div class="row">
+      <button (click)="onClickVoteDown(idx)" class="col-md-10 mx-auto my-2 btn btn-red">Vote Down</button>
+    </div>
+    <div class="row">
+      <button (click)="onClickDelete(idx)" class="col-md-10 mx-auto btn btn-black">Delete</button>
+    </div>
+  </div>
+</div>
