@@ -1,0 +1,49 @@
+<div class="row col-md-12 my-1 mx-0 p-0">
+  <form (submit)="onSubmit()" class="form col-md-6 mx-0 p-0">
+    <div class="row col-md-12 mx-0 p-0 form-group">
+      <label for="power" class="col-md-5 col-form-label">Power Level:</label>
+      <select name="power" tabindex="1" class="col-md-3 form-control" 
+        required
+        min=0
+        max=100
+        [(ngModel)]="selectedPowerLevel">
+        <option *ngFor="let pl of pwrLvls" [value]="pl">{{pl}}</option> 
+      </select>
+      <input type="submit" tabindex="2" class="form-control col-md-3 offset-md-1" value="Calculate">
+    </div>
+  </form>
+  <div class="col-md-6 mx-0 text-right">
+    <img class="offset-md-6 featureImg" [src]="imgSource" alt="Saiyan">
+  </div>
+</div>
+<div class="row col-md-12 mx-0 p-0">
+  <small class="col-md-12">Click a component!</small>
+</div>
+<div class="row col-md-12 my-4 mx-0 p-0">
+  <div class="contentBox shadeBox" (click)="onClickDiv(0)">
+    <p class="titleText">HumanComponent</p>
+    <app-human class="row col-md-12 m-0 p-0" [selectedPowerLevel]="selectedPowerLevel" [isInit]="!isSubmit"></app-human>
+  </div>
+  <div class="contentBox shadeBox" (click)="onClickDiv(1)">
+    <p class="titleText">SaiyanComponent</p>
+    <app-saiyan class="row col-md-12 m-0 p-0" [selectedPowerLevel]="selectedPowerLevel" [isInit]="!isSubmit"></app-saiyan>
+  </div>
+  <div class="contentBox shadeBox" (click)="onClickDiv(2)">
+    <p class="titleText">SuperSaiyanComponent</p>
+    <app-super-saiyan class="row col-md-12 m-0 p-0" [selectedPowerLevel]="selectedPowerLevel" [isInit]="!isSubmit"></app-super-saiyan>
+  </div>
+</div>
+<div class="row col-md-12 my-2 mx-0 p-0">
+  <div class="contentBox shadeBox" (click)="onClickDiv(3)">
+    <p class="titleText">SuperSaiyanTwoComponent</p>
+    <app-saiyan-two class="row col-md-12 m-0 p-0" [selectedPowerLevel]="selectedPowerLevel" [isInit]="!isSubmit"></app-saiyan-two>
+  </div>
+  <div class="contentBox shadeBox" (click)="onClickDiv(4)">
+    <p class="titleText">SuperSaiyanThreeComponent</p>
+    <app-saiyan-three class="row col-md-12 m-0 p-0" [selectedPowerLevel]="selectedPowerLevel" [isInit]="!isSubmit"></app-saiyan-three>
+  </div>
+  <div class="contentBox shadeBox" (click)="onClickDiv(5)">
+    <p class="titleText">SuperSaiyanFourComponent</p>
+    <app-saiyan-four class="row col-md-12 m-0 p-0" [selectedPowerLevel]="selectedPowerLevel" [isInit]="!isSubmit"></app-saiyan-four>
+  </div>
+</div>

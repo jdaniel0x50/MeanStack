@@ -1,0 +1,11 @@
+.contentBox {
+    border: 1px black solid;
+    padding: 15px;
+    width: 100%;
+}
+.titleText {
+    margin-top: -29px;
+    padding: 0 5px;
+    font-weight: bold;
+    background-color: white;
+}

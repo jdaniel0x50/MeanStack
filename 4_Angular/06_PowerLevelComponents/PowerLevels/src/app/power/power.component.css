@@ -1,0 +1,22 @@
+.contentBox {
+    border: 2px black solid;
+    padding: 15px;
+    width: 100%;
+}
+.shadeBox {
+    margin-left: 1.5%;
+    margin-right: 1.5%;
+    width: 30%;
+    background-color: lightyellow
+}
+.featureImg {
+    height: 125px;
+    border: 0.5px solid darkslategray;
+}
+.titleText {
+    margin-top: -26px;
+    padding: 0 3px;
+    font-size: 75%;
+    font-weight: bold;
+    background-color: white;
+}
