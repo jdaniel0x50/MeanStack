@@ -9,13 +9,12 @@ import { NumbersService } from '../numbers.service';
 export class BetaComponent implements OnInit {
   constructor(private _numbersService: NumbersService) { }
   sequence2: number[] = [];
-  max: number = 25;
 
   ngOnInit() {
     this.sequence2 = this._numbersService.retrieveNumbers(1);
   }
   onClickAddNum() {
-    this._numbersService.addNumbers(1, this.max);
+    this._numbersService.addNumbers(1);
   }
 
 }

@@ -1,0 +1,7 @@
+.gainGold {
+    color: darkgreen;
+}
+.loseGold {
+    color: crimson;
+    font-weight: bold;
+}

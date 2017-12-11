@@ -1,5 +1,60 @@
-<h4 class="display-4 col-md-12 m-0 p-0">Difference Between Sequences</h4>
+<h4 class="col-md-12 mx-0 my-3 p-0">Difference Between Sequences</h4>
 <div class="row col-md-12 m-0 p-0">
-  <button (click)="onClickDifference()" class="col-md-3 btn">Generate Difference</button>
-  <h3 class="col-md-3 ml-2 mt-1 text-center text-info">{{difference}}</h3>
+  <button (click)="onClickDifference()" class="col-md-10 mx-auto my-3 btn">Generate Difference</button>
+  <h3 class="col-md-3 mx-auto mt-1 text-center text-info">{{difference}}</h3>
+</div>
+<div class="row col-md-12 my-4">
+  <h5 class="row col-md-12 text-center my-3">Statistics</h5>
+  <table class="table table-striped">
+    <thead>
+      <th></th>
+      <th>Seq 1</th>
+      <th>Seq 2</th>
+    </thead>
+    <tr>
+      <td>Count</td>
+      <td>{{stats1.count}}</td>
+      <td>{{stats2.count}}</td>
+    </tr>
+    <tr>
+      <td>Minimum</td>
+      <td>{{stats1.min}}</td>
+      <td>{{stats2.min}}</td>
+    </tr>
+    <tr>
+      <td>Maximum</td>
+      <td>{{stats1.max}}</td>
+      <td>{{stats2.max}}</td>
+    </tr>
+    <tr>
+      <td>Average</td>
+      <td>{{stats1.avg}}</td>
+      <td>{{stats2.avg}}</td>
+    </tr>
+    <tr>
+      <td>Mode</td>
+      <td>{{stats1.mode}}</td>
+      <td>{{stats2.mode}}</td>
+    </tr>
+    <tr>
+      <td>Quartile1</td>
+      <td>{{stats1.q1}}</td>
+      <td>{{stats2.q1}}</td>
+    </tr>
+    <tr>
+      <td>Median</td>
+      <td>{{stats1.median}}</td>
+      <td>{{stats2.median}}</td>
+    </tr>
+    <tr>
+      <td>Quartile3</td>
+      <td>{{stats1.q3}}</td>
+      <td>{{stats2.q3}}</td>
+    </tr>
+    <tr>
+      <td>IQR</td>
+      <td>{{stats1.interQtrRange}}</td>
+      <td>{{stats2.interQtrRange}}</td>
+    </tr>
+  </table>
 </div>

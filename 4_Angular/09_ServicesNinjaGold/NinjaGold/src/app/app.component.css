@@ -1,0 +1,23 @@
+.contentBox {
+    border: 1px solid black;
+    padding-bottom: 10px;
+}
+.contentHeader {
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 75%;
+    font-weight: bold;
+    background-color: lightslategray;
+}
+.bldgBox {
+    font-size: 70%;
+}
+.posGold {
+    color: goldenrod;
+    font-weight: bold;
+}
+.negGold {
+    color: crimson;
+    font-weight: 500;
+}

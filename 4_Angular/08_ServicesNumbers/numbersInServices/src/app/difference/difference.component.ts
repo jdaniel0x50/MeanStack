@@ -11,6 +11,8 @@ export class DifferenceComponent implements OnInit {
   sequence1: number[] = [];
   sequence2: number [] = [];
   difference: number;
+  stats1;
+  stats2;
   
   ngOnInit() {
     this.sequence1 = this._numbersService.retrieveNumbers(0);
@@ -20,7 +22,8 @@ export class DifferenceComponent implements OnInit {
     let sumSeq1: number = this._numbersService.sumNumbers(0);
     let sumSeq2: number = this._numbersService.sumNumbers(1);
     this.difference = sumSeq1 - sumSeq2;
+    this.stats1 = this._numbersService.getStatistics(0);
+    this.stats2 = this._numbersService.getStatistics(1);
   }
-
 
 }

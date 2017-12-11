@@ -1,0 +1,30 @@
+<div class="container col-md-11 mx-auto">
+  <div class="row col-md-12 mx-0 my-4 p-0">
+    <div class="col-md-4 mx-0 p-0 contentBox">
+      <div class="row col-md-12 mx-auto contentHeader">
+        <p class="mx-auto my-0">Component 0</p>
+      </div>
+      <div class="row mx-auto">
+        <h4 class="mx-auto" [ngClass]="{'posGold': totalGold > 0, 'negGold': totalGold < 0}">Gold Count: {{totalGold}}</h4>
+      </div>
+    </div>
+  </div>
+  <div class="row col-md-12 mx-0 my-4 px-0 contentBox">
+    <div class="row col-md-12 mx-auto contentHeader">
+      <p class="mx-auto my-0">Component 1</p>
+    </div>
+    <div class="row col-md-12 mx-auto">
+      <app-building *ngFor="let bldg of buildings" [bldg]="bldg" (newGoldEvent)="newGoldCreated($event)" class="col-md-3 text-center bldgBox"></app-building>
+    </div>
+  </div>
+  <div class="row col-md-12 mx-0 my-4 px-0 contentBox">
+    <div class="row col-md-12 mx-auto contentHeader">
+      <p class="mx-auto my-0">Component 2</p>
+    </div>
+    <div class="row col-md-12 mx-auto px-5">
+      <ul class="row col-md-12 mx-0 px-0">
+        <app-message *ngFor="let msg of messages; let idx = index" [msg]="msg" [msgGainClass]="msgClasses[idx]" class="row col-md-12"></app-message>
+      </ul>
+    </div>
+  </div>
+</div>
