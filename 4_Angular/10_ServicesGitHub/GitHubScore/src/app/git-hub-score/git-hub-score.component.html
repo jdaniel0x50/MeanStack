@@ -1,0 +1,27 @@
+<div *ngIf="acctSet" class="row col-md-12 m-0 p-0">
+  <div class="row col-md-12 p-0 m-0">
+    <h1 class="col-md-12 display-4">Account</h1>
+  </div>
+  <div *ngIf="ghAcctData == 'ERROR'" class="row col-md-11 mx-0 px-0">
+    <h4 class="text-danger">User does not exist, pick a different GitHub username.</h4>
+  </div>
+  <div *ngIf="ghAcctData != 'ERROR'" class="row col-md-11 mx-0 px-0">
+    <div class="row col-md-12">
+      <h5 class="col-md-5">Username:</h5>
+      <div class="col-md-7">{{ghAcctData.login}}</div>
+    </div>
+    <div class="row col-md-12">
+      <h5 class="col-md-5">Public Repos:</h5>
+      <div class="col-md-7">{{ghAcctData.public_repos}}</div>
+    </div>
+    <div class="row col-md-12">
+      <h5 class="col-md-5">Followers:</h5>
+      <div class="col-md-7">{{ghAcctData.followers}}</div>
+    </div>
+    <div class="row col-md-12 my-3">
+      <h5 class="col-md-5">Score:</h5>
+      <div class="col-md-7">{{ghAcctData.public_repos + ghAcctData.followers}}</div>
+      <h4 class="row mx-auto my-2" [ngStyle]="{'color': msgColor}">{{ghScoreMsg}}</h4>
+    </div>
+  </div>
+</div>
