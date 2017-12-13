@@ -1,0 +1,6 @@
+<div class="row col-md-11 mx-auto my-3">
+  <h4 class="col-md-12">Previously Submitted Notes</h4>
+  <div class="col-md-12 mx-auto my-2 scroll">
+    <app-note-item *ngFor="let note of notes" [note]="note"></app-note-item>
+  </div>
+</div>
